@@ -1,5 +1,3 @@
-// console.log("initial commit")
-
 require('dotenv').config();
 const express = require("express")
 const {connectToMongoDB} = require("./connect")
@@ -17,6 +15,6 @@ connectToMongoDB(process.env.MONGO_URL)
 .then(() => console.log("MongoDB Connected"))
 
 app.use("/",userRoute);
-// app.use("/",todoRoute);
+app.use("/",todoRoute);
 
 app.listen(PORT, () => console.log(`Server started at PORT ${PORT}`))
