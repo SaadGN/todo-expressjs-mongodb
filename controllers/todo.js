@@ -10,7 +10,7 @@ async function createTodo(req, res) {
         const todo = new Todo({
             title,
             description,
-            user: req, user, id
+            user: req.user.id
         });
 
         await todo.save();
@@ -31,9 +31,42 @@ async function getTodos(req, res) {
     }
 }
 
+async function deleteTodo(req,res){
+    try{
+        const {id} = req.params
+        const todo = await Todo.findOneAndDelete({_id:id , user:req.user.id})
+        if(!todo){
+            return res.status(400).json({error:"Todo not found"})
+        }
+        res.json({message:"Todo deleted successfully"})
+
+    } catch(err){
+        return res.status(500).json({err:err.message})
+    }
+}
+async function updateTodo(req,res){
+    try{
+        const {id} = req.params
+        const {title,description} = req.body;
+        const todo = await Todo.findOneAndDelete({_id:id , user:req.user.id})
+        if(!todo){
+            return res.status(400).json({error:"Todo not found"})
+        }
+        if(todo) todo.title = title
+        if(description) todo.description=description
+
+        await todo.save()
+        res.json({message:"Todo updated successfully"})
+
+    } catch(err){
+        res.status(500).json({err:err.message})
+    }
+}
+
 module.exports = {
     createTodo,
     getTodos,
-
+    deleteTodo,
+    updateTodo
 }
 
