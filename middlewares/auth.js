@@ -18,7 +18,7 @@ async function auth(req, res, next) {
 
     const user = await User.findById(decoded.id);
     if (!user) {
-      return res.status(401).json({ error: "User not found or deleted" });
+      return res.status(401).json({ error: "User not found" });
     }
 
     req.user = { id: user._id };
