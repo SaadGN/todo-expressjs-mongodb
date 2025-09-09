@@ -6,8 +6,8 @@ const auth = require("../middlewares/auth");
 
 const router = express.Router();
 
-router.post("/createTodo",auth,createTodo)
-router.get("/getTodos",auth,getTodos)
-router.delete("/deleteTodo/:id",auth,deleteTodo)
-router.put("/updateTodo/:id",auth,updateTodo)
+router.post("/todo",auth,createTodo)
+router.get("/todo",auth,getTodos)
+router.delete("/todo/:id",auth,deleteTodo)
+router.put("/todo/:id",auth,updateTodo)
 module.exports = router;
