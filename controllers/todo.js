@@ -14,10 +14,10 @@ async function createTodo(req, res) {
         });
 
         await todo.save();
-        res.status(201).json({ message: "Todo created successfully", todo });
+        return res.status(201).json({ message: "Todo created successfully", todo });
 
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }
 
@@ -25,9 +25,9 @@ async function createTodo(req, res) {
 async function getTodos(req, res) {
     try {
         const todos = await Todo.find({ user: req.user.id })
-        res.json({ todos })
+        return res.json({ todos })
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }
 
@@ -38,7 +38,7 @@ async function deleteTodo(req, res) {
         if (!todo) {
             return res.status(404).json({ error: "Todo not found" })
         }
-        res.json({ message: "Todo deleted successfully" })
+        return res.json({ message: "Todo deleted successfully" })
 
     } catch (err) {
         return res.status(500).json({ error: err.message })
@@ -54,13 +54,17 @@ async function updateTodo(req, res) {
             return res.status(404).json({ error: "Todo not found" });
         }
 
-        if (title) todo.title = title;
+        if (title && title.trim()){
+            todo.title = title;
+        } else {
+            return res.status(400).json({ error: "Title required" }); 
+        }
         if (description) todo.description = description;
 
         await todo.save();
-        res.json({ message: "Todo updated successfully", todo });
+        return res.json({ message: "Todo updated successfully", todo });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }
 
