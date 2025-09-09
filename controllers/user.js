@@ -80,12 +80,13 @@ async function login(req, res) {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User not found" });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ error: "Invalid password" });
-
     if (!user.status) {
       return res.status(403).json({ error: "Account not verified. Please verify OTP first." });
     }
+    
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ error: "Invalid password" });
+
 
     const token = jwt.sign({
       id: user._id,
