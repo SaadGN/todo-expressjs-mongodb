@@ -1,6 +1,6 @@
 # ExpressJS Todo App with OTP Authentication  
 
-A simple **backend project** built with **Express.js, MongoDB, JWT, and Nodemailer**.  
+This is my beginner-level backend project built with **Express.js, MongoDB, JWT, and Nodemailer**.It’s a **learning project**, it helped me understand the basics of building APIs in Express.js.
 
 Users can:  
 - **Sign up** with email & password (with OTP email verification).  
@@ -48,10 +48,11 @@ project-root/
 │   ├── user.js        # User routes
 │   └── todo.js        # Todo routes
 │
+|── README.md
+|
 │── .env               # Environment variables
 │── server.js          # Entry point
 │── package.json
-│── README.md
 ```
 
 ---
@@ -60,8 +61,8 @@ project-root/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/todo-otp-app.git
-cd todo-otp-app
+git clone git@github.com:SaadGN/todo-expressjs-mongodb.git
+cd todo-expressjs-mongodb
 ```
 
 ### 2. Install dependencies
@@ -85,8 +86,8 @@ For Gmail, you need to use an **App Password** (not your main password).
 ```bash
 npm start
 ```
-Server will start at:  
-`http://localhost:8000`
+Server will start at PORT you added:  
+`http://localhost:PORT`
 
 ---
 
@@ -135,8 +136,8 @@ Authorization: Bearer <your_jwt_token>
 ---
 
 ## Tech Stack
-- **Node.js + Express.js** → Backend framework  
-- **MongoDB + Mongoose** → Database  
+- **Express.js** → Backend framework  
+- **MongoDB** → Database  
 - **JWT** → Authentication  
 - **Nodemailer** → Email (OTP sending)  
 - **bcryptjs** → Password hashing  
@@ -144,10 +145,4 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-## Future Improvements
-- Add **refresh tokens** for better auth handling.  
-- Add a **secure password reset** feature using OTP or email-based verification. 
-- Deploy to **Render/Heroku/Vercel** with MongoDB Atlas.  
-
----
 
