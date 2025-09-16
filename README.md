@@ -143,6 +143,6 @@ Authorization: Bearer <your_jwt_token>
 - **bcryptjs** → Password hashing  
 - **Validator** → Email validation  
 
----
+
 
 
